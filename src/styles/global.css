@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: latte --default, mocha --prefersdark;
+  prefix: "d-";
+}
+@plugin "./themes/catppuccinTheme.latte.ts";
+@plugin "./themes/catppuccinTheme.mocha.ts";
+
+@plugin "@tailwindcss/typography";
+
+@source "../**/*.{astro,md,mdx,ts,tsx}";

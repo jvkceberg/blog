@@ -1,16 +1,22 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Home | Jvke's Blog">
+  <section class="flex flex-col items-center justify-center py-20 text-center">
+    <div class="avatar placeholder mb-6">
+      <div class="bg-ctp-surface0 text-ctp-mauve rounded-full w-24 border-4 border-ctp-mauve shadow-lg">
+        <span class="text-3xl font-bold">JT</span>
+      </div>
+    </div>
+    <h1 class="text-6xl mb-4">테스트!</h1>
+    <p class="text-xl text-ctp-subtext0 mb-8 max-w-md">
+      노션은 싫고, Next.js는 무거워서 직접 만든 <br/>
+      <strong>Astro + Catppuccin</strong> 블로그입니다.
+    </p>
+    <div class="flex gap-4">
+      <a href="/blog" class="btn btn-primary">글 보러가기</a>
+      <button class="btn btn-outline border-ctp-pink text-ctp-pink hover:bg-ctp-pink hover:border-ctp-pink">Github</button>
+    </div>
+  </section>
+</BaseLayout>
