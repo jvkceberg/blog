@@ -1,0 +1,51 @@
+---
+interface Props {
+  brand: string;
+  color?: string;
+  darkColor?: string;
+  size?: number | string;
+  class?: string;
+  alt?: string;
+}
+
+const { 
+  brand: slug, 
+  color = '000',
+  darkColor = 'fff', 
+  size = 24,
+  class: className,
+  alt 
+} = Astro.props;
+
+const lightUrl = `https://cdn.simpleicons.org/${slug}/${color}?viewbox=auto&size=${size}`;
+const darkUrl = `https://cdn.simpleicons.org/${slug}/${darkColor}?viewbox=auto&size=${size}`;
+const imgClassLight = 'logo-light' + (` ${className}` || '')
+const imgClassDark = 'logo-dark' + (` ${className}` || '')
+---
+
+<div>
+  <img 
+    src={lightUrl} 
+    alt={alt || `${slug} logo`} 
+    class={imgClassLight}
+    loading="lazy"
+  />
+  <img 
+    src={darkUrl} 
+    alt={alt || `${slug} logo`} 
+    class={imgClassDark}
+    loading="lazy"
+  />
+</div>
+
+<style>
+  .logo-dark { display: none; }
+  .logo-light { display: block; }
+
+  :root[data-theme="mocha"] .logo-light {
+    display: none;
+  }
+  :root[data-theme="mocha"] .logo-dark {
+    display: block;
+  }
+</style>

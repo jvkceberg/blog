@@ -1,5 +1,6 @@
 ---
-import Navbar from '@/components/Navbar/index.astro';
+import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 import '@/styles/global.css';
 
 interface Props {
@@ -17,14 +18,16 @@ const {
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" /> 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> 
+    <meta name="generator" content={Astro.generator} /> 
+    <title>{title}</title> 
+    <meta name="description" content={description} /> 
   </head>
   
   <body>
-    <Navbar />
+    <Navbar>
+      <Sidebar slot="sidebar-content"/>
+    </Navbar>
   </body>
 </html>

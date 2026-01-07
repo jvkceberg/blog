@@ -1,15 +1,42 @@
 ---
+import NavbarContent from "./navbarContent.astro"
 ---
 
-<nav class="d-navbar bg-base-100/80 backdrop-blur-md shadow-sm p-4">
-  <div class="flex-1">
-    <img src="https://placehold.co/192x48.png"/>
-  </div>
+<!-- Navbar With Sidebar! -->
+<div class="d-drawer">
+  <input type="checkbox" id="sidebar" class="d-drawer-toggle">
+  <div class="d-drawer-content flex flex-col">
+    <nav class="d-navbar bg-base-100/80 backdrop-blur-md shadow-sm p-3">
+      <!-- Opener -->
+      <div class="flex-none lg:hidden">
+        <label for="sidebar" aria-label="open sidebar" class="d-btn d-btn-square d-btn-ghost">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="inline-block h-6 w-6 stroke-current"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </label>
+      </div>
+      
+      <!-- Navbar Content -->
+      <NavbarContent />
+    </nav>
 
-  <div class="flex-none flex items-center gap-4">
-    <a href="https://github.com/jvkceberg/blog">
-      <img src="https://placehold.co/48x48.png"/>
-    </a>
-    <img src="https://placehold.co/48x48.svg"/>
+    <!-- Main Content -->
+    <main>
+      <slot name="main-content"/>
+    </main>
   </div>
-</nav>
+  <div class="d-drawer-side">
+    <label for="sidebar" aria-label="close sidebar" class="d-drawer-overlay"></label>
+    <slot name="sidebar-content"/>
+  </div>
+</div>

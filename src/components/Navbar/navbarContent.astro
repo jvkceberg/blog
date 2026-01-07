@@ -1,0 +1,14 @@
+---
+import NavbarItems from "./navbarItems.astro"
+import NavbarBrand from "./navbarBrand.astro"
+---
+
+<!-- Left: Brand -->
+<div class="flex-1">
+  <NavbarBrand />
+</div>
+
+<!-- Right: Items (Hidden when drawer activated) -->
+<div class="flex-none hidden lg:block">
+  <NavbarItems />
+</div>
