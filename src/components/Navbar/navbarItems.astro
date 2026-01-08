@@ -1,23 +1,56 @@
 ---
-interface IconProps {
-  name: string;
-  type?: 'icon' | 'brand';
-  class?: string;
-}
+import ThemeControl from '@/components/ThemeControl';
+import Icon from '@/components/Icon';
 
-interface Link {
-  href: string;
+interface NavbarLink {
   label: string;
-  iconProps?: IconProps;
+  icon: string;
+  href: string;
+  iconOnly?: boolean;
 }
 
 interface Props {
-  links: Link[]
+  class?: string;
 }
 
-import MenuLinks from "@/components/MenuLinks"
+const navbarLinks: NavbarLink[] = [
+  {
+    label: 'Home',
+    icon: 'material-symbols:home-rounded',
+    href: '/'
+  },
+  {
+    label: 'Blog',
+    icon: 'material-symbols:article',
+    href: '/blog'
+  },
+  {
+    label: 'Github',
+    icon: 'mdi:github',
+    href: 'github.com/jvkceberg/blog',
+    iconOnly: true
+  }
+];
 ---
 
-<div class="flex gap-3">
-  <MenuLinks links={Astro.props.links} variant="navbar"/>
-</div>
+<ul class="items-center gap-5 flex">
+  {
+    navbarLinks.map((link) => (
+      <li>
+        <a 
+          href={link.href} 
+          aria-label={link.label}
+          class="flex gap-2"
+        >
+          <Icon name={link.icon} class={link.iconOnly? 'w-8 h-8' : 'w-6 h-6'} />
+          { !link.iconOnly && <span class="font-medium text-lg">{link.label}</span> }
+        </a>
+      </li>
+    ))
+  }
+  <li>
+    <a href="#none">
+      <ThemeControl name="navbar-theme-control" size={8}/>
+    </a>
+  </li>
+</ul>

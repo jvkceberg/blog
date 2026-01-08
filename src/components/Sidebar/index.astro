@@ -1,12 +1,24 @@
 ---
 import SidebarHeader from "./sidebarHeader.astro"
 import SidebarFooter from "./sidebarFooter.astro"
+import SidebarLinks from './sidebarLinks.astro'
+
+const navbarLinks = [
+  {
+    label: 'Home',
+    icon: 'material-symbols:home-rounded',
+    href: '/'
+  },
+  {
+    label: 'Blog',
+    icon: 'material-symbols:article',
+    href: '/blog'
+  }
+];
 ---
 
 <div class="bg-base-200 min-h-full w-80 p-4 flex flex-col">
   <SidebarHeader />
-  <ul class="d-menu">
-    <slot />
-  </ul>
+  <SidebarLinks navbarLinks={navbarLinks} horizontal={false} class="w-full"/>
   <SidebarFooter />
 </div>

@@ -1,0 +1,33 @@
+---
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+interface Props {
+  name: string;
+  size?: number | string;
+  class?: string;
+  [key: string]: any;
+}
+
+const { 
+  name, 
+  size = 24, 
+  class: className, 
+  ...attributes 
+} = Astro.props;
+---
+
+<AstroIcon 
+  name={name} 
+  width={size} 
+  height={size} 
+  class:list={[className]}
+  {...attributes}
+/>
+
+<style>
+  [data-astro-icon] {
+    display: inline-block;
+    vertical-align: middle;
+    fill: currentColor;
+  }
+</style>

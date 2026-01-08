@@ -1,20 +1,4 @@
 ---
-interface IconProps {
-  name: string;
-  type?: 'icon' | 'brand';
-  class?: string;
-}
-
-interface Link {
-  href: string;
-  label: string;
-  iconProps?: IconProps;
-}
-
-interface Props {
-  links: Link[]
-}
-
 import NavbarItems from "./navbarItems.astro"
 import NavbarBrand from "./navbarBrand.astro"
 ---
@@ -26,5 +10,5 @@ import NavbarBrand from "./navbarBrand.astro"
 
 <!-- Right: Items (Hidden when drawer activated) -->
 <div class="flex-none hidden lg:block">
-  <NavbarItems links={Astro.props.links}/>
+  <NavbarItems />
 </div>

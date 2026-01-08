@@ -1,28 +1,12 @@
 ---
-interface IconProps {
-  name: string;
-  type?: 'icon' | 'brand';
-  class?: string;
-}
-
-interface Link {
-  href: string;
-  label: string;
-  iconProps?: IconProps;
-}
-
-interface Props {
-  links: Link[]
-}
-
-import NavbarContent from "./navbarContent.astro"
+import NavbarContentWrapper from "./navbarContentWrapper.astro"
 ---
 
 <!-- Navbar With Sidebar! -->
 <div class="d-drawer">
   <input type="checkbox" id="sidebar" class="d-drawer-toggle">
   <div class="d-drawer-content flex flex-col">
-    <nav class="d-navbar bg-base-100/80 backdrop-blur-md shadow-sm p-3">
+    <nav class="d-navbar bg-base-100/80 backdrop-blur-md shadow-sm px-3">
       <!-- Opener -->
       <div class="flex-none lg:hidden">
         <label for="sidebar" aria-label="open sidebar" class="d-btn d-btn-square d-btn-ghost">
@@ -44,7 +28,7 @@ import NavbarContent from "./navbarContent.astro"
       </div>
       
       <!-- Navbar Content -->
-      <NavbarContent links={Astro.props.links} />
+      <NavbarContentWrapper />
     </nav>
 
     <!-- Main Content -->

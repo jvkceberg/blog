@@ -1,0 +1,39 @@
+---
+// Only for Homepage
+import Icon from '@/components/Icon';
+
+interface NavbarLink {
+  label: string;
+  icon: string;
+  href: string;
+  iconOnly?: boolean;
+}
+
+interface Props {
+  horizontal?: boolean;
+  class?: string;
+  navbarLinks: NavbarLink[]
+}
+
+const { horizontal = true, class: className, navbarLinks } = Astro.props;
+---
+
+<ul class:list={[
+  "d-menu", 
+  horizontal ? "d-menu-horizontal" : "d-menu-vertical",
+  className
+]}>
+  {
+    navbarLinks.map((link) => (
+      <li>
+        <a 
+          href={link.href} 
+          aria-label={link.label}
+        >
+          <Icon name={link.icon} class={link.iconOnly? 'w-8 h-8' : 'w-6 h-6'} />
+          { !link.iconOnly && <span class="text-lg">{link.label}</span> }
+        </a>
+      </li>
+    ))
+  }
+</ul>

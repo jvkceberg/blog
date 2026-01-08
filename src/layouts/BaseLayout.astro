@@ -1,61 +1,17 @@
 ---
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
-import MenuLinks from '@/components/MenuLinks';
 import '@/styles/global.css';
-
-interface IconProps {
-  name: string;
-  type?: 'icon' | 'brand';
-  class?: string;
-}
-
-interface Link {
-  href: string;
-  label: string;
-  iconProps?: IconProps;
-}
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { 
-  title = "Jvke's Blog", 
-  description = "Astro + Catppuccin + DaisyUI" 
-} = Astro.props;
-
-const homeLinks: Link[] = [
-  { 
-    href: '/', 
-    label: 'Home', 
-    iconProps: {
-      name: 'house',
-      type: 'icon'
-    } 
-  },
-  { 
-    href: '/blog', 
-    label: 'Blog', 
-    iconProps: {
-      name: 'rss',
-      type: 'icon'
-    }
-  },
-  { 
-    href: '/projects', 
-    label: 'Projects', 
-    iconProps: {
-      name: 'github', 
-      type: 'brand',
-    } 
-  },
-  { 
-    href: '/about', 
-    label: 'About', 
-  },
-];
+const {
+  title,
+  description
+} = Astro.props
 ---
 
 <!doctype html>
@@ -71,9 +27,9 @@ const homeLinks: Link[] = [
   </head>
   
   <body>
-    <Navbar links={homeLinks}>
+    <Navbar>
       <Sidebar slot="sidebar-content">
-        <MenuLinks links={homeLinks} title="links"/>
+        asdf
       </Sidebar>
     </Navbar>
   </body>

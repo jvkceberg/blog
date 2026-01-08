@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import "tailwindcss";
 @plugin "daisyui" {
   themes: latte --default, mocha --prefersdark;
@@ -9,3 +10,11 @@
 @plugin "@tailwindcss/typography";
 
 @source "../**/*.{astro,md,mdx,ts,tsx}";
+
+@theme {
+  --font-jetbrains-mono: "JetBrains Mono", sans-serif;
+}
+
+html {
+  @apply font-jetbrains-mono;
+}
