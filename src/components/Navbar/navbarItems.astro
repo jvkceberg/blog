@@ -1,11 +1,23 @@
 ---
-import BrandLogo from "@/components/BrandLogo"
-import ThemeControl from "@/components/ThemeControl"
+interface IconProps {
+  name: string;
+  type?: 'icon' | 'brand';
+  class?: string;
+}
+
+interface Link {
+  href: string;
+  label: string;
+  iconProps?: IconProps;
+}
+
+interface Props {
+  links: Link[]
+}
+
+import MenuLinks from "@/components/MenuLinks"
 ---
 
 <div class="flex gap-3">
-  <a href="https://github.com/jvkceberg/blog">
-    <BrandLogo brand="github" class="w-10 h-10"/>
-  </a>
-  <ThemeControl is:inline/>
+  <MenuLinks links={Astro.props.links} variant="navbar"/>
 </div>

@@ -1,6 +1,18 @@
+---
+interface Props {
+  name: string
+}
+
+const {
+  name
+} = Astro.props;
+---
+
 <label class="d-swap d-swap-rotate">
+  <span class="hidden">Theme Changer</span>
+
   <!-- this hidden checkbox controls the state -->
-  <input type="checkbox" id="theme-control" class="d-theme-controller" value="theme-control" />
+  <input type="checkbox" name={name} class="d-theme-controller" value="theme-control" aria-label="Theme Changer"/>
 
   <script is:inline>
     (function() {
@@ -10,10 +22,10 @@
       document.documentElement.setAttribute('data-theme', theme);
       
       // input 요소를 찾아 체크 상태를 즉시 변경
-      const control = document.getElementById('theme-control');
-      if (control) {
+      const controls = document.querySelectorAll('.d-theme-controller');
+      controls.forEach(control => {
         control.checked = (theme === 'mocha');
-      }
+      });
     })();
   </script>
 
@@ -37,15 +49,30 @@
 </label>
 
 <script>
-  const handleToggle = (e: Event) => {
-    const isDark = (e.target as HTMLInputElement).checked;
+  const THEME_KEY = 'theme-preference';
+
+  const syncAllToggles = (isDark: boolean) => {
     const theme = isDark ? 'mocha' : 'latte';
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme-preference', theme);
+    localStorage.setItem(THEME_KEY, theme);
+
+    const allToggles = document.querySelectorAll('.d-theme-controller') as NodeListOf<HTMLInputElement>;
+    allToggles.forEach(input => {
+      input.checked = isDark;
+    });
+  };
+
+  const handleToggle = (e: Event) => {
+    const input = e.target as HTMLInputElement;
+    syncAllToggles(input.checked);
   };
 
   const setup = () => {
-    document.querySelector('#theme-control')?.addEventListener('change', handleToggle);
+    const allToggles = document.querySelectorAll('.d-theme-controller');
+    allToggles.forEach(toggle => {
+      toggle.removeEventListener('change', handleToggle);
+      toggle.addEventListener('change', handleToggle);
+    });
   };
 
   setup();

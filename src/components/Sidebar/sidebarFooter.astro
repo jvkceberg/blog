@@ -1,0 +1,25 @@
+---
+// SidebarFooter.astro
+import ThemeControl from '@/components/ThemeControl';
+import Icon from '@/components/Icon';
+---
+
+<div class="p-6 mt-auto border-t border-base-content/5 flex flex-col gap-6">
+  <div class="flex items-center justify-between bg-base-200/50 p-3 rounded-xl">
+    <span class="text-xs font-medium opacity-60">Appearance</span>
+    <ThemeControl name="sidebar-theme-control"/>
+  </div>
+
+  <div class="flex items-center justify-around">
+    <a href="https://github.com/jvkceberg" class="d-btn d-btn-ghost d-btn-circle d-btn-sm" aria-label="Go to My Github">
+      <Icon name="github" size="xl"/>
+    </a>
+    <a href="/rss.xml" class="d-btn d-btn-ghost d-btn-circle d-btn-sm" aria-label="Go to RSS of this site">
+      <Icon name="rss" size="xl" class="text-[#f2a654]"/>
+    </a>
+  </div>
+
+  <div class="text-[10px] text-center opacity-40 font-mono">
+    © 2026 Jaehyun Ahn
+  </div>
+</div>

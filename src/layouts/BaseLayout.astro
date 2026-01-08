@@ -1,7 +1,20 @@
 ---
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
+import MenuLinks from '@/components/MenuLinks';
 import '@/styles/global.css';
+
+interface IconProps {
+  name: string;
+  type?: 'icon' | 'brand';
+  class?: string;
+}
+
+interface Link {
+  href: string;
+  label: string;
+  iconProps?: IconProps;
+}
 
 interface Props {
   title?: string;
@@ -12,6 +25,37 @@ const {
   title = "Jvke's Blog", 
   description = "Astro + Catppuccin + DaisyUI" 
 } = Astro.props;
+
+const homeLinks: Link[] = [
+  { 
+    href: '/', 
+    label: 'Home', 
+    iconProps: {
+      name: 'house',
+      type: 'icon'
+    } 
+  },
+  { 
+    href: '/blog', 
+    label: 'Blog', 
+    iconProps: {
+      name: 'rss',
+      type: 'icon'
+    }
+  },
+  { 
+    href: '/projects', 
+    label: 'Projects', 
+    iconProps: {
+      name: 'github', 
+      type: 'brand',
+    } 
+  },
+  { 
+    href: '/about', 
+    label: 'About', 
+  },
+];
 ---
 
 <!doctype html>
@@ -23,11 +67,14 @@ const {
     <meta name="generator" content={Astro.generator} /> 
     <title>{title}</title> 
     <meta name="description" content={description} /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   
   <body>
-    <Navbar>
-      <Sidebar slot="sidebar-content"/>
+    <Navbar links={homeLinks}>
+      <Sidebar slot="sidebar-content">
+        <MenuLinks links={homeLinks} title="links"/>
+      </Sidebar>
     </Navbar>
   </body>
 </html>

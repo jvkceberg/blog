@@ -1,0 +1,68 @@
+---
+import Icon from '@/components/Icon';
+import BrandLogo from '@/components/BrandLogo';
+
+interface IconProps {
+  name: string;
+  type?: 'icon' | 'brand';
+  class?: string;
+}
+
+interface Link {
+  href: string;
+  label: string;
+  iconProps?: IconProps;
+}
+
+interface Props {
+  links: Link[];
+  variant?: 'navbar' | 'sidebar';
+  title?: string;
+}
+
+const { links, variant = 'sidebar', title } = Astro.props;
+const pathname = Astro.url.pathname;
+
+const isActive = (path: string) => {
+  if (path === '/' && pathname === '/') return true;
+  return path !== '/' && pathname.startsWith(path);
+};
+---
+
+<ul class:list={[
+  "d-menu gap-1",
+  variant === 'navbar' ? 'd-menu-horizontal p-0' : 'w-full p-4'
+]}>
+  {title && <li class="d-menu-title text-xs opacity-50 uppercase tracking-widest mb-1">{title}</li>}
+  
+  {links.map((link) => (
+    <li>
+      <a 
+        href={link.href} 
+        class:list={[
+          "flex items-center gap-3 transition-all py-2.5", 
+          isActive(link.href) ? "d-active bg-base-content/10 text-base-content font-bold" : "text-base-content/70",
+          variant === 'navbar' && link.iconProps ? "px-2" : "px-4"
+        ]}
+        aria-label={`Go to ${link.label}`}
+      >
+        {link.iconProps && (
+          <div class="flex shrink-0 items-center justify-center w-5 h-5">
+            {link.iconProps.type === 'brand' ? (
+              <BrandLogo brand={link.iconProps.name} size={20} />
+            ) : (
+              <Icon name={link.iconProps.name} class="text-[18px]" />
+            )}
+          </div>
+        )}
+        
+        <span class:list={[
+          "text-md leading-none",
+          variant === 'navbar' && link.iconProps ? 'sr-only lg:not-sr-only' : 'inline'
+        ]}>
+          {link.label}
+        </span>
+      </a>
+    </li>
+  ))}
+</ul>

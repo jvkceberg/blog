@@ -1,0 +1,36 @@
+---
+interface Props {
+  name: string; 
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | string;
+  class?: string;
+}
+
+const {
+  name,
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+const sizeClass = `fa-${size}`;
+const iconClasses = [
+  'fas',
+  `fa-${name}`,
+  sizeClass,
+  className,
+  "block",
+  "leading-none",
+  "text-[1em]",
+  "text-current",
+  "shrink-0"
+].filter(Boolean).join(' ');
+---
+
+<i class={iconClasses}></i>
+
+<style>
+  i::before {
+    display: block !important;
+    line-height: 1 !important;
+    vertical-align: top !important;
+  }
+</style>
